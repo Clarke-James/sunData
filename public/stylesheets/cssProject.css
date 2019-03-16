@@ -1,0 +1,224 @@
+h1 { text-align: center;
+    font-family: Georgia;
+    color:darkblue;
+}
+
+body {
+    margin: 0;
+    background-image: url("../images/images.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+
+meter {
+    height: 25px;
+    width: 300px;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    background-color:lightslategrey
+}
+th, td {
+    padding: 5px;
+    text-align: left;    
+}
+
+div {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    /*border-style: solid;/* this was useful in formating the divs for mobile format*/ 
+}
+
+.button {
+    padding: 15px 25px;
+    font-size: 18px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: white;
+    background-color:blue;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;  
+}
+
+.button:hover {background-color: darkblue;}
+
+.button:active {
+    background-color: darkblue;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+img {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto; 
+}
+#liveImg {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+     width: 90%;
+}
+
+#timeMethod {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+#video {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 85%;
+}
+
+#updated {
+    display: block;
+    width: 80%;
+}
+
+#meter { 
+    display: block;
+    width: 90%;
+}
+
+#fluxTable {
+    display: block;
+    width: 90%;
+}
+
+#kIndex {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+}
+#aIndex {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+}
+#akTable {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 55%;
+}
+
+#sounds {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 85%;
+}
+
+#countVisits {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+#alwaysSunny {
+    transition: transform, 5s, ease;
+    transform: rotate(0deg);
+}
+
+.center{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+#page1 {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+}
+
+#page2 {
+    display: none;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+}
+
+#page3 {
+    display: none;
+    margin-left: auto;
+    margin-right: auto;
+    width: 98%;
+}
+
+#page4 {
+    display: none;
+    margin-left: auto;
+    margin-right: auto;
+    width: 95%;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: blue;
+  color: white;
+}
+audio {
+   width: 250px;
+}
+/*
+
+12(X)Designing, Defining, and Triggering CSS3 Transforms without Custom Libraries (Thought Library)
+
+*/
+#line1 {
+    background-color: darkblue;
+    animation: barsMove 5s linear 2s infinite ;
+}
+/*
+11(X)Designing, Defining, and Triggering CSS3 Transitions without Custom Libraries (Thought Library)
+*/
+#line2 {
+    background-color: rebeccapurple;
+    transition:  width 5s;
+}
+#line2:hover {
+    width: 95%;
+}
+div.line{
+    width: 10%;
+    height: 5px;
+    position: relative;  
+}
+/*13(X)Designing, Defining, and Triggering CSS3 Animations without Custom Libraries (Thought Library)*/
+@keyframes barsMove {
+    50%{width:300px;}
+}

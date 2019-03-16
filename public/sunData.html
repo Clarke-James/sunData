@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+   <head>
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1">
+       <script type="text/javascript" src="project.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="stylesheets/cssProject.css">
+       
+        <title>Final Project</title>
+       <!--reffrenced www.w3schools.com/howto/howto_js_topnav.asp-->
+        <div class="topnav">
+                <a class="active" href="#" onclick="pageOne()">Home</a>
+                <a href="#" onclick="pageTwo()">Flux</a>
+                <a href="#" onclick="pageThree()">A & K Index</a>
+                <a href="#" onclick="pageFour()">About</a>
+        </div>
+        <h1 id="pageName">Radio Propagation</h1>
+   </head>
+     <!-- Topic 9 onload -->
+     <body onload="startUp();">
+        
+            <div id="page1">
+                
+                <div id="timeMethod">Current time<br>
+                    <script>
+                        //Using the date methods we can fetch the date and time properties as well.
+                        // 2(X)Object Creation Functions, Inheritance, Properties, Methods, Instantiation
+                        var time = new Date();
+               
+                        document.getElementById("timeMethod").innerHTML =  time.getUTCHours() + ":" + time.getUTCMinutes() + ":" + time.getUTCSeconds() + " GMT";
+                    </script>
+                <br>
+                </div>
+            
+                <div id="liveImg"> 
+                    <a href="https://sdo.gsfc.nasa.gov/data/"><img id="liveSun" src="https://sdo.gsfc.nasa.gov/assets/img/latest/latest_512_0171.jpg" style="width:300px;height:300px;"></a><p>Live image of the sun using a filter that enhances the veiw of the solar flares. It is updated every 20 minutes from NASA SDO satelites.</p>
+                </div>
+                
+                <div id="countVisits">    
+                    <script>  
+                        //reffrenced from https://stackoverflow.com/questions/47428504/javascript-count-number-of-visitor-for-website
+                        // 5(X)Local Storage API, Storing and Retrieving Simple Data  
+                        var n = localStorage.getItem('counter');
+
+                        if (n === null) {
+                            n = 0;
+                        }
+                        n++;
+
+                        localStorage.setItem("counter", n);
+
+                        numVisit = n.toString().split('').map(Number);
+                        document.getElementById('countVisits').innerHTML = 'Visit counter: ';
+                        for (var i of numVisit) {
+                            document.getElementById('countVisits').innerHTML += '<span class="counter">' + i + '</span>';
+                        }
+                    </script>  
+                </div>
+                <br>
+                <!-- Topic 9 ontouch, svg image format chosen because image doesn't pixelate when expanded. (Original Artwork by Monika Clarke, my daughter.) -->
+                <div id="alwaysSunny" ontouchstart="grownUp()">
+                    <img src="images/sunny.svg" style="width: 350px; height: 200px;">
+                </div>
+         </div>
+         
+         <div id="page2">
+             
+            <div id="updated" class="center"> Last update: </div>
+            
+            <div id="meter" class="center"> Solar flux level meter <br>     
+            </div>  
+            <form action="/bandCond" method="GET">
+                <input class="button" type="submit" name="submit">
+                </form>
+            <p>Solar flux can be a basic indicator of solar activity and be used to determine how much solar radiation is being received from the sun on earth.  Solar Flux is measured in SFU, Solar Flux Units. This radiation ionizes the atmosphere so that radio waves can be reflected to earth. The sun has a 11-year cycle that changes magnetic polarities each time. This meter is updated from NOAA.</p>
+             
+            <div id="fluxTable" class="center">
+                <table>
+                    <tr>
+                        <th>Flux</th> 
+                        <th>Comments</th>
+                    </tr>
+                    <tr>
+                        <td>50</td>
+                        <td>Propagation very bad</td>
+                    </tr>
+                    <tr>
+                        <td>50-70</td>
+                        <td>Propagation attenuated</td>
+                    </tr>
+                    <tr>
+                        <td>70-100</td>
+                        <td>Propagation might be good</td>
+                    </tr>
+                    <tr>
+                        <td>100-150</td>
+                        <td>Propagation ideal</td>
+                    </tr>
+                    <tr>
+                        <td>150</td>
+                        <td>Propagation possibly exceptional</td>
+                    </tr>
+                </table>
+                <br>
+            </div>
+        </div>
+         
+        <div id="page3">
+                
+            <p>A and K indexes are used to determine the level of geomagnetic activity it indicate the level of magnetic fluctuations in the earth's ionosphere.  The K index is a 3-hour measurement but does not show long term affects.  The A index is a daily average of these same measurements, to show long term affects.  These affects are heard as static interference on ground based high frequency radios during unsettled to severe storm activity.</p>
+            <div id="kIndex">
+                <img src="https://services.swpc.noaa.gov/images/planetary-k-index.gif" width="325px" height="250px">
+            </div>
+            
+            <br>
+            <div id="aIndex">
+                <img src="https://services.swpc.noaa.gov/images/station-a-index.png" width="325px" height="275px">
+            </div>
+            <br>
+            <div id="akTable">
+                <table>
+                    <tr>
+                        <th>A</th>
+                        <th>K</th> 
+                        <th>Comments</th>
+                    </tr>
+                    <tr>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>Quiet</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>1</td>
+                        <td>Quiet</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>1</td>
+                        <td>Quiet</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>1</td>
+                        <td>Quiet to unsetled</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>2</td>
+                        <td>Unsetteled</td>
+                    </tr>
+                    <tr>
+                        <td>15</td>
+                        <td>3</td>
+                        <td>Active</td>
+                    </tr>
+                    <tr>
+                        <td>27</td>
+                        <td>4</td>
+                        <td>Active</td>
+                    </tr>
+                    <tr>
+                        <td>48</td>
+                        <td>5</td>
+                        <td>Minor storm</td>
+                    </tr>
+                    <tr>
+                        <td>80</td>
+                        <td>6</td>
+                        <td>Major storm</td>
+                    </tr>
+                    <tr>
+                        <td>132</td>
+                        <td>7</td>
+                        <td>Sever storm</td>
+                    </tr>
+                    <tr>
+                        <td>208</td>
+                        <td>8</td>
+                        <td>Very major storm</td>
+                    </tr>
+                    <tr>
+                        <td>400</td>
+                        <td>9</td>
+                        <td>Very major storm</td>
+                    </tr>
+                </table>
+                <br>
+            </div>
+        </div>
+         
+        <div id='page4'>
+            
+            <div id="video"> 
+                <!-- https://sdo.gsfc.nasa.gov/data/dailymov/movie.php?q=20181102_1024_0171
+10( )HTML5 Tags - Video, Audio, and Canvas -->
+                <video width="320" height="240" autoplay loop>
+                    <source src="20181102_SunFlux_0171.mp4"><br>
+                </video>        
+            </div> 
+            <p>Full days images compiled into a video to veiw sunspot and solar flare movement. Enhanced with filter. (Dated 11/02/2018)</p>
+            <div id="line1" class="line"></div><br>
+            <div id="sounds">
+                <!--https://www.nasa.gov/feature/goddard/2018/sounds-of-the-sun
+10( )HTML5 Tags - Video, Audio, and Canvas -->
+                <audio controls>
+                    <source src="SUNMIX.wav" type="audio/wav">
+                </audio>
+                <p>Sun vibrations translated into sound. What the sun would sound like if it could (an explanation).</p>
+                <div id="line2" class="line"></div>
+                <br>
+                <audio controls>
+                    <source src="sun_sonification.wav" type="audio/wav"> 
+                </audio>
+                <p>Sun vibration sound only. Use your headphones for best effect.</p>
+            </div>
+        </div>   
+    </body>
+</html>
