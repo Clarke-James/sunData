@@ -14,7 +14,7 @@ var client = new twit ({
   });
 
   var params = {q: 'solar sfi @bandconditions', count: 1, result_type: 'recent'};
-      client.get('search/tweets', params, function(error, tweets, response) {
+      let getSun = client.get('search/tweets', params, function(error, tweets, response) {
     if (!error) {
       var sun = tweets.statuses[0].text;
       var data = sun.replace("RT @bandconditions: Solar\n", "{ ");
@@ -32,7 +32,7 @@ var client = new twit ({
   });
 
   var params2 = {q: 'hf band Day/Night @bandconditions', count: 1};
-  client.get('search/tweets', params2, function(error, tweets1, response) {
+  let getBands = client.get('search/tweets', params2, function(error, tweets1, response) {
     if (!error) {
       var bands= tweets1.statuses[0].text;
       var band1 = bands.replace(/\n/g, " ");
@@ -69,7 +69,8 @@ express()
       var data8 = data7.replace("Sunspots:", "\"Sunspots\":");
    
       sun1 = JSON.parse(data8);*/
-  
+      getSun;
+      getBands;
      res.render('bandData.ejs',  {SFI: sun1.SFI, K: sun1.K, A: sun1.A, Sunspots: sun1.Sunspots, eighty: bandCond.eight, thirty: bandCond.thirty, seventeen: bandCond.seventeen, twelve: bandCond.twelveTen});
    // }      
   })
