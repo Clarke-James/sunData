@@ -1,8 +1,9 @@
 var twit = require('twitter');
 require('dotenv').config({path: './datas.env'});
 
-module.exports.getSun = getSun;
-module.exports.getBands = getBands;
+module.exports = getSun;
+module.exports = getBands;
+
 var client = new twit ({
   consumer_key: process.env.TWITTER_CONSUMER_KEY,
   consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
@@ -26,8 +27,10 @@ function getSun(){
       var data8 = data7.replace("Sunspots:", "\"Sunspots\":");
    
       sun1 = JSON.parse(data8);
-      //console.log(tweets.statuses[0].text)    
+      //console.log(tweets.statuses[0].text)   
+      return sun1; 
         };
+        
     });
 }
 
@@ -46,6 +49,7 @@ client.get('search/tweets', params, function (error, tweets1, response) {
 
      bandCond = JSON.parse(band7);
        //console.log(tweets1)
+       return bandCond;
     };      
   });
 }

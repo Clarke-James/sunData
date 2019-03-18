@@ -5,8 +5,8 @@ var twit = require('twitter');
 require('dotenv').config({path: './datas.env'});
 var getTweet = require("./bandCond");
 
-var sun1; //= getTweet.getSun;
-var bandCond; //= getTweet.getBands;
+var sun1 ;
+var bandCond;
 
 
 var client = new twit ({
@@ -22,7 +22,7 @@ express()
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
-  .get('/bandCond', (req, res) => {
+  .get('/bandCond', (req, res, getTweet) => {
 
       var params = {q: 'solar sfi @bandconditions', count: 1, result_type: 'recent'};
       client.get('search/tweets', params, function(error, tweets, response) {
@@ -39,8 +39,7 @@ express()
       var data8 = data7.replace("Sunspots:", "\"Sunspots\":");
    
       sun1 = JSON.parse(data8);
-      
-     res.render('bandData.ejs',  {SFI: sun1.SFI, K: sun1.K, A: sun1.A, Sunspots: sun1.Sunspots, eighty: bandCond.eight, thirty: bandCond.thirty, seventeen: bandCond.seventeen, twelve: bandCond.twelveTen});
+
     }      
   })
   
@@ -57,6 +56,8 @@ express()
       var band7 = band6.replace("12m-10m", "\", \"twelveTen\": \"");
 
      bandCond = JSON.parse(band7);
+
+     res.render('bandData.ejs',  {SFI: sun1.SFI, K: sun1.K, A: sun1.A, Sunspots: sun1.Sunspots, eighty: bandCond.eight, thirty: bandCond.thirty, seventeen: bandCond.seventeen, twelve: bandCond.twelveTen});
     };      
   });
   })
