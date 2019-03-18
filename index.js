@@ -5,8 +5,8 @@ var twit = require('twitter');
 require('dotenv').config({path: './datas.env'});
 var getTweet = require("./bandCond");
 
-var sun1 = getTweet.getSun;
-var bandCond = getTweet.getBands;
+var sun1; //= getTweet.getSun;
+var bandCond; //= getTweet.getBands;
 
 
 var client = new twit ({
@@ -23,7 +23,7 @@ express()
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
   .get('/bandCond', (req, res) => {
-/*
+
       var params = {q: 'solar sfi @bandconditions', count: 1, result_type: 'recent'};
       client.get('search/tweets', params, function(error, tweets, response) {
     if (!error) {
@@ -39,11 +39,11 @@ express()
       var data8 = data7.replace("Sunspots:", "\"Sunspots\":");
    
       sun1 = JSON.parse(data8);
-      */
+      
      res.render('bandData.ejs',  {SFI: sun1.SFI, K: sun1.K, A: sun1.A, Sunspots: sun1.Sunspots, eighty: bandCond.eight, thirty: bandCond.thirty, seventeen: bandCond.seventeen, twelve: bandCond.twelveTen});
-    //}      
+    }      
   })
-  /*
+  
   var params2 = {q: 'hf band Day/Night @bandconditions', count: 1};
   client.get('search/tweets', params2, function(error, tweets1, response) {
     if (!error) {
@@ -59,6 +59,6 @@ express()
      bandCond = JSON.parse(band7);
     };      
   });
-  })*/
-  
+  })
+
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
