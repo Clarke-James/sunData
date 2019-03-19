@@ -1,8 +1,12 @@
 var twit = require('twitter');
+var fs = require('fs');
 require('dotenv').config({path: './datas.env'});
 
-module.exports = getSun;
-module.exports = getBands;
+module.exports.getSun = getSun;
+module.exports.getBands = getBands;
+
+var sun1;
+var bandCond;
 
 var client = new twit ({
   consumer_key: process.env.TWITTER_CONSUMER_KEY,
@@ -10,6 +14,9 @@ var client = new twit ({
   access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
   access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
   });
+  
+//getSun();
+//getBands();
 
 function getSun(){
   var params = {q: 'solar sfi @bandconditions', count: 1, result_type: 'recent'};
@@ -27,12 +34,29 @@ function getSun(){
       var data8 = data7.replace("Sunspots:", "\"Sunspots\":");
    
       sun1 = JSON.parse(data8);
-      //console.log(tweets.statuses[0].text)   
-      return sun1; 
+      //console.log(sun1)   
+      //return sun1; 
+
+      //https://www.tutorialkart.com/nodejs/node-js-write-json-object-to-file/
+var jsonContent = JSON.stringify(sun1);
+//console.log(jsonContent);
+ 
+fs.writeFile("outputSun.json", jsonContent, 'utf8', function (err) {
+    if (err) {
+        console.log("An error occured while writing JSON Sun Object to File.");
+        return console.log(err);
+    }
+ 
+    console.log("JSON Sun file has been saved.");
+}); 
+
         };
         
     });
 }
+
+
+
 
 function getBands(){
   var params = {q: 'hf band Day/Night @bandconditions', count: 1};
@@ -48,8 +72,22 @@ client.get('search/tweets', params, function (error, tweets1, response) {
       var band7 = band6.replace("12m-10m", "\", \"twelveTen\": \"");
 
      bandCond = JSON.parse(band7);
-       //console.log(tweets1)
-       return bandCond;
+       //console.log(bandCond)
+      //return bandCond;
+      
+//https://www.tutorialkart.com/nodejs/node-js-write-json-object-to-file/
+var jsonContent1 = JSON.stringify(bandCond);
+//console.log(jsonContent1);
+ 
+fs.writeFile("outputBands.json", jsonContent1, 'utf8', function (err) {
+    if (err) {
+        console.log("An error occured while writing JSON Bands Object to File.");
+        return console.log(err);
+    }
+ 
+    console.log("JSON Bands file has been saved.");
+}); 
     };      
   });
 }
+
