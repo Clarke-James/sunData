@@ -9,18 +9,24 @@ module.exports.getTweet = getTweet;
 
 var sun1;
 var bandCond;
-
+/*
 var client = new twit ({
   consumer_key: process.env.TWITTER_CONSUMER_KEY,
   consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
   access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
   access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
   });
-  
+  */
 //getSun();
 //getBands();
 
 function getSun(){
+  var client = new twit ({
+    consumer_key: process.env.TWITTER_CONSUMER_KEY,
+    consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
+    access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
+    access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
+    });
   var params = {q: 'solar sfi @bandconditions', count: 1};
 client.get('search/tweets', params, function (error, tweets, response)  {
     if (!error) {
@@ -59,6 +65,14 @@ fs.writeFile("outputSun.json", jsonContent, 'utf8', function (err) {
 
 
 function getBands(){
+     var client = new twit ({
+      consumer_key: process.env.TWITTER_CONSUMER_KEY,
+      consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
+      access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
+      access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
+      });
+    var params = {q: 'solar sfi @bandconditions', count: 1};
+  client.get('search/tweets', params, function (error, tweets, response)  {
   var params = {q: 'hf band Day/Night @bandconditions', count: 1};
 client.get('search/tweets', params, function (error, tweets1, response) {
     if (!error) {
@@ -87,16 +101,25 @@ fs.writeFile("outputBands.json", jsonContent1, 'utf8', function (err) {
  
    // console.log("JSON Bands file has been saved.");
 }); 
-    };      
+    }; 
+      
   });
+})
 }
-
 
 
 
 //https://codeburst.io/build-a-simple-twitter-bot-with-node-js-in-just-38-lines-of-code-ed92db9eb078
 function getTweet(searchData, callback){
+      var client = new twit ({
+      consumer_key: process.env.TWITTER_CONSUMER_KEY,
+      consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
+      access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
+      access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
+      });
 
+    var params = {q: 'solar sfi @bandconditions', count: 1};
+  client.get('search/tweets', params, function (error, tweets, response)  {
 // Set up your search parameters
 var params = {
   q: searchData,
@@ -146,4 +169,5 @@ client.get('search/tweets', params, function(err, data, response) {
     console.log(err);
 }
       })
+})
 }
