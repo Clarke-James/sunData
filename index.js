@@ -9,7 +9,7 @@ var getTweet = require("./bandCond");
 var sun1;
 var bandCond;
 
-//getTweet.getSun();
+getTweet.getSun();
 getTweet.getBands();
 //getTweet.get10Tweets(searchData);
 
@@ -59,13 +59,10 @@ express()
     searchData = req.query.data;
     getTweet.getTweet(searchData, function (data){
      res.send(data);
-     //console.log(data);
+     console.log(data);
     });
     //console.log(searchData);
   })
  
-
-
-
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
   

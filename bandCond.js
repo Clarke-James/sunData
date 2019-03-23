@@ -2,9 +2,8 @@ var express = require('express');
 var twit = require('twitter');
 var fs = require('fs');
 require('dotenv').config({path: './datas.env'});
-var app = express();
 
-//module.exports.getSun = getSun;
+module.exports.getSun = getSun;
 module.exports.getBands = getBands;
 module.exports.getTweet = getTweet;
 
@@ -20,7 +19,7 @@ var client = new twit ({
   
 //getSun();
 //getBands();
-/*
+
 function getSun(){
   var params = {q: 'solar sfi @bandconditions', count: 1};
 client.get('search/tweets', params, function (error, tweets, response)  {
@@ -57,7 +56,8 @@ fs.writeFile("outputSun.json", jsonContent, 'utf8', function (err) {
         
     });
 }
-*/
+
+
 function getBands(){
   var params = {q: 'hf band Day/Night @bandconditions', count: 1};
 client.get('search/tweets', params, function (error, tweets1, response) {
