@@ -1,7 +1,7 @@
 const express = require('express')
 const path = require('path')
 var bodyParser = require('body-parser');
-var router = express.Router();
+
 const PORT = process.env.PORT || 5000
 var fs = require('fs');
 var getTweet = require("./bandCond");

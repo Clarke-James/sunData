@@ -120,7 +120,13 @@ client.get('search/tweets', params, function(err, data, response) {
       client.post('favorites/create', id, function(err, response){
         // If the favorite fails, log the error message
         if(err){
-         console.log(err[0].message);
+          let username = response.user.screen_name;
+          let tweetId = response.id_str;
+          let tweetText = response.text;
+          //console.log('Tweets: ', `https://twitter.com/${username}/status/${tweetId}`);
+          return callback({'Tweets':  `https://twitter.com/${username}/status/${tweetId}`, 'tweetText': tweetText, 'userName': username});
+          
+         //console.log(err[0].message);
       }
         // If the favorite is successful, log the url of the tweet
         else{
