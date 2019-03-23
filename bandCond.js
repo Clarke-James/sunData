@@ -1,9 +1,12 @@
+var express = require('express');
 var twit = require('twitter');
 var fs = require('fs');
 require('dotenv').config({path: './datas.env'});
+var app = express();
 
-module.exports.getSun = getSun;
+//module.exports.getSun = getSun;
 module.exports.getBands = getBands;
+module.exports.getTweet = getTweet;
 
 var sun1;
 var bandCond;
@@ -17,10 +20,10 @@ var client = new twit ({
   
 //getSun();
 //getBands();
-
+/*
 function getSun(){
-  var params = {q: 'solar sfi @bandconditions', count: 1, result_type: 'recent'};
- client.get('search/tweets', params, function (error, tweets, response) {
+  var params = {q: 'solar sfi @bandconditions', count: 1};
+client.get('search/tweets', params, function (error, tweets, response)  {
     if (!error) {
       var sun = tweets.statuses[0].text;
       var data = sun.replace("RT @bandconditions: Solar\n", "{ ");
@@ -47,17 +50,14 @@ fs.writeFile("outputSun.json", jsonContent, 'utf8', function (err) {
         return console.log(err);
     }
  
-    console.log("JSON Sun file has been saved.");
+   // console.log("JSON Sun file has been saved.");
 }); 
 
         };
         
     });
 }
-
-
-
-
+*/
 function getBands(){
   var params = {q: 'hf band Day/Night @bandconditions', count: 1};
 client.get('search/tweets', params, function (error, tweets1, response) {
@@ -85,9 +85,59 @@ fs.writeFile("outputBands.json", jsonContent1, 'utf8', function (err) {
         return console.log(err);
     }
  
-    console.log("JSON Bands file has been saved.");
+   // console.log("JSON Bands file has been saved.");
 }); 
     };      
   });
 }
 
+
+
+
+//https://codeburst.io/build-a-simple-twitter-bot-with-node-js-in-just-38-lines-of-code-ed92db9eb078
+function getTweet(searchData, callback){
+
+// Set up your search parameters
+var params = {
+  q: searchData,
+  count: 1,
+  result_type: 'recent',
+  lang: 'en',
+}
+
+// Initiate your search using the above paramaters
+client.get('search/tweets', params, function(err, data, response) {
+//var tweets = [];
+
+  // If there is no error, proceed
+  if(!err){
+    // Loop through the returned tweets
+    for(let i = 0; i < data.statuses.length; i++){
+      // Get the tweet Id from the returned data
+      let id = { id: data.statuses[i].id_str }
+      // Try to Favorite the selected Tweet
+      //var tweet;
+      client.post('favorites/create', id, function(err, response){
+        // If the favorite fails, log the error message
+        if(err){
+         console.log(err[0].message);
+      }
+        // If the favorite is successful, log the url of the tweet
+        else{
+          let username = response.user.screen_name;
+          let tweetId = response.id_str;
+          let tweetText = response.text;
+          //console.log('Tweets: ', `https://twitter.com/${username}/status/${tweetId}`);
+          return callback({'Tweets':  `https://twitter.com/${username}/status/${tweetId}`, 'tweetText': tweetText, 'userName': username});
+          //tweet = ({'userName': username, 'tweetId': tweetId, 'tweetText': tweetText});
+          //tweets.push(tweet);
+        }
+      });
+      
+    }
+    //return callback(tweets);
+  } else {
+    console.log(err);
+}
+      })
+}
