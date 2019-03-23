@@ -59,7 +59,7 @@ express()
     searchData = req.query.data;
     getTweet.getTweet(searchData, function (data){
      res.send(data);
-     console.log(data);
+     //console.log(data);
     });
     //console.log(searchData);
   })
