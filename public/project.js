@@ -43,7 +43,6 @@ function fluxMeter(data) {
     document.getElementById("updated").innerHTML = "Solar flux measured value: "  + data.Flux + "<br> Last update: " + data.TimeStamp; 
 }
 
-
 function someStyle(){
     document.body.style.fontFamily = 'Times New Roman';
     document.body.style.color = 'linen';
@@ -78,12 +77,12 @@ function pageThree() {
     document.getElementById("page2").style.display = "none";
     document.getElementById("page3").style.display = "block"; 
     document.getElementById("page4").style.display = "none"; 
-    document.getElementById("pageName").innerHTML = "A and K Indexes"; 
+    document.getElementById("pageName").innerHTML = "About"; 
 }
 function pageFour() {
     document.getElementById("page1").style.display = "none"; 
     document.getElementById("page2").style.display = "none";
     document.getElementById("page3").style.display = "none"; 
     document.getElementById("page4").style.display = "block";
-    document.getElementById("pageName").innerHTML = "Solar Information"; 
+    document.getElementById("pageName").innerHTML = "Extras"; 
 }
